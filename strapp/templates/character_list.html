@@ -1,0 +1,43 @@
+<h2>キャラクター一覧</h2>
+<div class="table-responsive small">
+  <table class="table-striped table-sm back">
+    <thead>
+      <tr>
+        <th scope="col">立ち絵</th>
+        <th scope="col">キャラクター</th>
+        <th scope="col">学園</th>
+        <th scope="col">年齢</th>
+        <th scope="col">誕生日</th>
+        <th scope="col">身長</th>
+        <th scope="col">趣味</th>
+        <th scope="col">CV.</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for record in object_list %}
+      <tr>
+        <td><img src="{{ record.image.url }}"
+          width="20%" height="20%"
+          xmlns="http://www.w3.org/2000/svg"
+          role="img" aria-label="Placeholder: Thumbnail"
+          preserveAspectRatio="xMidYMid slice"
+          focusable="false">
+          <title>Placeholder</title>
+        </td>
+          <rect width="20%" height="20%" fill="#55595c"/>
+        <td><a href="{% url 'strapp:character_detail' record.pk %}">{{ record.name }}</a></td>
+        <td>{{ record.get_category_display }}</td>
+        {% if record.age == None %}
+        <td>不明</td>
+        {% else %}
+        <td>{{ record.age }}歳</td>
+        {% endif %}
+        <td>{{ record.birthday|date:"n月j日" }}</td>
+        <td>{{ record.height }}cm</td>
+        <td>{{ record.hobby }}</td>
+        <td>{{ record.voice }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>

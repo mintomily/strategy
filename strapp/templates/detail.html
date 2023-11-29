@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}キャラクター詳細{% endblock %}
+
+    {% block contents %}
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col offset-3">
+                <h2>{{ object.name }}</h2>
+                <br>
+                <p><img src="{{ object.image.url }}"></img></p>
+                <br>
+                <strong>年齢</strong>
+                {% if object.age == None %}
+                <p>不明</p>
+                {% else %}
+                <p>{{ object.age }}歳</p>
+                {% endif %}
+                <br>
+                <strong>誕生日</strong>
+                <p>{{ object.birthday|date:"n月j日" }}</p>
+                <br>
+                <strong>身長</strong>
+                <p>{{ object.height }}cm</p>
+                <br>
+                <strong>趣味</strong>
+                <p>{{ object.hobby }}</p>
+                <br>
+                <strong>声優</strong>
+                <p>{{ object.voice }}</p>
+                {% if request.user == object.user %}
+                <form method="POST">
+                <a href="{% url 'strapp:character_delete' object.pk %}"
+                class="btn btn-primary my-2">削除する</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endblock %}

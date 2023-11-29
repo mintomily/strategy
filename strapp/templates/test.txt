@@ -1,0 +1,16 @@
+from django.views.generic import CreateView
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+from .forms import (フォーム名)
+
+@method_decorator(login_required, name='dispatch')
+
+class (ビューの名前)(CreateView):
+    form_class = (フォーム名)
+    template_name = "(htmlの名前)"
+
+    def form_valid(self, form):
+        character_data = form.save(commit=False)
+        character_data.user = self.request.user
+        character_data.save()
+        return super().form_valid(form)

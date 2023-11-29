@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}ブルアカまとめ{% endblock %}
+
+    {% block contents %}
+
+    <h2>掲示板</h2>
+
+    <div class="table-responsive small">
+        <table class="table table-striped table-sm">
+            <thead>
+                <tr>
+                    <th>ユーザー</th>
+                    <th>コメント</th>
+                    <th>投稿日時</th>
+                </tr>
+            </thead>
+            {% for text in object_list %}
+            <tbody>
+                <tr>
+                    <td>{{ text.user }}</td>
+                    <td>{{ text.text }}</td>
+                    <td>{{ text.posted_at }}</td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+    
+    {% endblock %}
